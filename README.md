@@ -25,4 +25,4 @@ g++ main.cpp -o smart_home
 http://localhost:8080
 
 ## Author
-Jannat Mim
+Jannatul Mawa
