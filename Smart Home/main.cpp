@@ -855,13 +855,13 @@ int main()
                  }
              });
 
-    /// Find Device
+    
     /// Find Device
     svr.Get("/find",
             [&](const Request &req, Response &res)
             {
                 int id = stoi(req.get_param_value("id"));
-                string mode = req.get_param_value("mode"); // "search" or "fast"
+                string mode = req.get_param_value("mode"); //Normal or  fast
                 string method = req.get_param_value("method");
 
                 int pos = -1, qpos = -1, apos = -1;
@@ -884,13 +884,13 @@ int main()
                             {
                                 apos = i;
                                 found = true;
-                                details += " | Found in Array at pos " + to_string(apos) + " (O(1) direct)";
+                                details += " | Found in Array at position: " + to_string(apos) + " (O(1) direct)";
                                 break;
                             }
                         }
                     }
                 }
-                else // mode == "search" -> use the selected method only
+                else // mode == "Normal"  use the selected method only
                 {
                     if (method == "tree")
                     {
@@ -901,22 +901,35 @@ int main()
                     {
                         Search_From_Stack(home.top, id, pos);
                         found = (pos != -1);
-                        details += " | Method: Stack | " + string(found ? "Found at pos " + to_string(pos) : "Not Found");
+                        details += " | Method: Stack | " + string(found ? "Found at position: " + to_string(pos) : "Not Found");
                     }
                     else if (method == "queue")
                     {
                         Search_from_Queue(home.front, id, qpos);
                         found = (qpos != -1);
-                        details += " | Method: Queue | " + string(found ? "Found at pos " + to_string(qpos) : "Not Found");
+                        details += " | Method: Queue | " + string(found ? "Found at position: " + to_string(qpos) : "Not Found");
                     }
                     else if (method == "array")
                     {
-                        for (int i = 1; i <= home.size; i++)
+                        int left = 1, right = home.size;
+                        apos = -1;
+
+                        while (left <= right)
                         {
-                            if (home.arr[i]->id == id)
+                            int mid = (left + right) / 2;
+
+                            if (home.arr[mid]->id == id)
                             {
-                                apos = i;
+                                apos = mid;
                                 break;
+                            }
+                            else if (home.arr[mid]->id < id)
+                            {
+                                left = mid + 1;
+                            }
+                            else
+                            {
+                                right = mid - 1;
                             }
                         }
                         found = (apos != -1);
@@ -931,6 +944,7 @@ int main()
                 res.set_redirect("/activity.html");
             });
 
+            ///For Display
     svr.Get("/display",
             [&](const Request &req, Response &res)
             {
@@ -960,7 +974,7 @@ int main()
                         safeResult += c;
                 }
 
-               home.saveActivity("DISPLAY (" + method + ")", safeResult);
+                home.saveActivity("DISPLAY (" + method + ")", safeResult);
                 res.set_redirect("/activity.html");
             });
 
