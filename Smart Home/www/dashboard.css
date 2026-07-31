@@ -1,0 +1,562 @@
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+
+}
+
+
+body{
+
+background:
+linear-gradient(135deg,#020617,#0b1220);
+
+color:#cbd5e1;
+
+min-height:100vh;
+
+}
+
+
+
+.dashboard-container{
+
+width:90%;
+max-width:1200px;
+margin:auto;
+padding:30px;
+
+}
+
+
+
+/* Header */
+
+
+header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:#0f172a;
+
+padding:25px;
+
+border-radius:15px;
+
+border:1px solid #1e3a8a;
+
+margin-bottom:30px;
+
+}
+
+
+header h1{
+
+color:#60a5fa;
+
+}
+
+
+header p{
+
+color:#64748b;
+
+margin-top:8px;
+
+}
+
+
+
+.logout{
+
+background:#1d4ed8;
+
+padding:10px 22px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+color:white;
+
+}
+
+
+
+
+
+/* Overview */
+
+
+.overview{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+margin-bottom:35px;
+
+}
+
+
+.overview-box{
+
+background:#0f172a;
+
+padding:25px;
+
+border-radius:12px;
+
+text-align:center;
+
+border:1px solid #1e3a8a;
+
+}
+
+
+.overview-box h3{
+
+color:#64748b;
+
+}
+
+
+.overview-box strong{
+
+display:block;
+
+color:#60a5fa;
+
+font-size:22px;
+
+margin:10px;
+
+}
+
+
+
+/* Cards */
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:25px;
+
+}
+
+
+
+.card{
+
+background:#0f172a;
+
+padding:30px;
+
+border-radius:15px;
+
+border:1px solid #1e3a8a;
+
+}
+
+
+.card h2{
+
+color:#60a5fa;
+
+margin-bottom:15px;
+
+}
+
+
+
+.description{
+
+color:#94a3b8;
+
+line-height:1.6;
+
+margin-bottom:20px;
+
+}
+
+
+
+input,select{
+
+width:100%;
+
+padding:12px;
+
+margin-bottom:15px;
+
+background:#020617;
+
+border:1px solid #1e293b;
+
+border-radius:8px;
+
+color:#cbd5e1;
+
+}
+
+
+
+button{
+
+width:100%;
+
+padding:12px;
+
+background:#2563eb;
+
+border:none;
+
+border-radius:8px;
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+
+
+
+.info{
+
+margin-top:20px;
+
+padding:12px;
+
+background:#020617;
+
+border-left:3px solid #2563eb;
+
+border-radius:8px;
+
+color:#64748b;
+
+font-size:14px;
+
+}
+
+
+
+
+/* Technology */
+
+
+.technology{
+
+margin-top:40px;
+
+background:#0f172a;
+
+padding:30px;
+
+border-radius:15px;
+
+border:1px solid #1e3a8a;
+
+}
+
+
+
+.technology h2{
+
+text-align:center;
+
+color:#60a5fa;
+
+margin-bottom:25px;
+
+}
+
+
+
+.tech-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+}
+
+
+
+.tech-grid div{
+
+background:#020617;
+
+padding:18px;
+
+text-align:center;
+
+border-radius:10px;
+
+border:1px solid #1e293b;
+
+}
+
+
+
+
+footer{
+
+text-align:center;
+
+margin-top:35px;
+
+color:#64748b;
+
+font-size:14px;
+
+}
+
+
+
+@media(max-width:900px){
+
+.overview,
+.grid,
+.tech-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+/* Remove section improvements */
+
+.card h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #93c5fd;
+    font-size: 16px;
+}
+
+/* Separate the two forms visually */
+.card form {
+    margin-bottom: 15px;
+}
+
+/* Add divider between sections */
+.card h3:not(:first-of-type) {
+    border-top: 1px solid #1e293b;
+    padding-top: 15px;
+}
+
+/* Smaller info text spacing */
+.card .info {
+    margin-top: 10px;
+}
+
+/* Optional: different button color for structure remove */
+form[action="/remove-structure"] button {
+    background:#2563eb;
+}
+
+form[action="/remove-structure"] button:hover {
+    background: #2563eb;
+}
+/* ===== Display Card Fix ===== */
+
+form[action="/display"] {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Make dropdown cleaner */
+form[action="/display"] select {
+    background: #010409;
+    border: 1px solid #0f172a;
+    color: #94a3b8;
+}
+
+/* Display button (distinct but still blue theme) */
+form[action="/display"] button {
+    background: #2563eb;
+    border-radius: 6px;
+}
+
+form[action="/display"] button:hover {
+    background: #2563eb;
+}
+
+/* Add a display result box look */
+
+.display-output {
+    margin-top: 15px;
+    padding: 12px;
+    background: #010409;
+    border: 1px solid #0f172a;
+    border-radius: 6px;
+    color: #64748b;
+    font-size: 14px;
+    min-height: 40px;
+}
+.remove-group{
+    margin-top:15px;
+    padding-top:10px;
+    border-top:1px solid #16233d;
+}
+/* Performance Insight Highlight Box */
+
+.insight-box {
+    margin-top: 15px;
+    padding: 15px;
+
+    background: linear-gradient(135deg, #020617, #0f172a);
+    border: 1px solid #1e40af;
+
+    border-radius: 10px;
+
+    color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.6;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.insight-box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #3b82f6;
+}
+
+.insight-box h4 {
+    color: #60a5fa;
+    margin-bottom: 8px;
+}
+
+.insight-box:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+/* ===== Search box improvement ===== */
+
+.card form select[name="mode"] {
+    margin-bottom: 10px;
+}
+
+/* make both selects look grouped */
+.card form select {
+    margin-bottom: 12px;
+}
+
+/* better spacing for search button */
+.card form button {
+    margin-top: 5px;
+}
+
+/* optional: highlight fast mode slightly */
+select[name="mode"] {
+    border: 1px solid #2563eb;
+}
+.message {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: linear-gradient(135deg, #0b1f3a, #0047ab);
+    color: white;
+
+    padding: 15px 35px;
+    border-radius: 12px;
+
+    border: 1px solid #00aaff;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+
+    z-index: 1000;
+
+    animation: disappear 4s forwards;
+}
+
+@keyframes disappear {
+
+    0% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.activity-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    background: transparent;
+    color: #60a5fa;
+
+    border: 1.5px solid #3b82f6;
+
+    transition: all 0.25s ease;
+}
+
+/* remove default link styles */
+.activity-btn:link,
+.activity-btn:visited {
+    text-decoration: none;
+    color: #60a5fa;
+}
+
+/* HOVER EFFECT (like 2nd image) */
+.activity-btn:hover {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}

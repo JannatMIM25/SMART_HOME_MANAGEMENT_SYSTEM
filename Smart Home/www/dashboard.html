@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+
+  <body>
+    <div class="dashboard-container">
+      <!-- Header -->
+
+      <header>
+        <div>
+          <h1>🏠 Smart Home Dashboard</h1>
+          <p>Device Management Control Panel</p>
+        </div>
+        <div class="header-actions">
+          <a href="/activity.html" class="activity-btn">📜 System Activity</a>
+          <a href="/index.html" class="logout">Logout</a>
+        </div>
+      </header>
+
+      <!-- Overview -->
+
+      <section class="overview">
+        <div class="overview-box">
+          <h3>System Status</h3>
+          <strong>ONLINE</strong>
+          <p>Running Successfully</p>
+        </div>
+
+        <div class="overview-box">
+          <h3>Backend</h3>
+          <strong>C++</strong>
+          <p>HTTP Server</p>
+        </div>
+
+        <div class="overview-box">
+          <h3>Storage</h3>
+          <strong>FILE</strong>
+          <p>devices.txt</p>
+        </div>
+
+        <div class="overview-box">
+          <h3>Structures</h3>
+          <strong>4 METHODS</strong>
+          <p>BST • Stack • Queue • Array</p>
+        </div>
+      </section>
+
+      <!-- Main Cards -->
+
+      <div class="grid">
+        <!-- Add -->
+
+        <div class="card">
+          <h2>➕ Add Device</h2>
+
+          <p class="description">
+            Register new smart devices and store them using selected structure.
+          </p>
+
+          <form action="/add" method="post">
+            <input type="number" name="id" placeholder="Device ID" required />
+
+            <input type="text" name="name" placeholder="Device Name" required />
+
+            <select name="type">
+              <option value="">Select Method</option>
+
+              <option value="tree">BST</option>
+
+              <option value="stack">Stack</option>
+
+              <option value="queue">Queue</option>
+
+              <option value="list">Linked List</option>
+            </select>
+
+            <button>Add Device</button>
+          </form>
+
+          <div class="info">Stored permanently in devices.txt</div>
+        </div>
+
+        <div class="card">
+          <h2>🔍 Search Device</h2>
+
+          <p class="description">
+            Search devices using selected or fastest methods.
+          </p>
+
+          <form action="/find" method="get" id="searchForm">
+            <input
+              type="number"
+              name="id"
+              placeholder="Enter Device ID"
+              required
+            />
+
+            <select name="mode" id="searchMode">
+              <option value="search">Normal Search</option>
+              <option value="fast">⚡ Fastest Method</option>
+            </select>
+
+            <select name="method" id="searchMethod" required>
+              <option value="" disabled selected>Select Method</option>
+              <option value="tree">BST</option>
+              <option value="stack">Stack</option>
+              <option value="queue">Queue</option>
+              <option value="array">Sorted Array</option>
+            </select>
+
+            <button>Run Query ⚡</button>
+          </form>
+
+          <div class="info">
+            ⚡ Fast mode → BST / Array <br />
+            📊 Normal → Any structure
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🗑 Remove Device</h2>
+
+          <p class="description">
+            Delete devices using correct data structure behavior.
+          </p>
+
+          <!-- Remove by ID -->
+
+          <h3>Remove by ID</h3>
+
+          <form action="/delete" method="post">
+            <input
+              type="number"
+              name="id"
+              placeholder="Enter Device ID"
+              required
+            />
+
+            <select name="method">
+              <option value="tree">BST</option>
+              <option value="list">Linked List</option>
+              <option value="array">Sorted Array</option>
+            </select>
+
+            <button>Remove by ID</button>
+          </form>
+
+          <p class="info">Used for precise deletion</p>
+
+          <!-- Remove from Structure -->
+
+          <h3>Remove from Structure</h3>
+
+          <form action="/remove-structure" method="post">
+            <select name="type">
+              <option value="stack">Pop (Stack)</option>
+              <option value="queue">Dequeue (Queue)</option>
+            </select>
+
+            <button>Remove</button>
+          </form>
+
+          <p class="info">
+            Stack removes last device • Queue removes oldest device
+          </p>
+        </div>
+
+        <!-- Display -->
+
+        <!-- Display -->
+
+        <div class="card">
+          <h2>📋 Display Devices</h2>
+
+          <p class="description">
+            View devices according to selected structure.
+          </p>
+
+          <form action="/display" method="get">
+            <select name="method">
+              <option value="tree">BST (Inorder)</option>
+
+              <option value="stack">Stack View</option>
+
+              <option value="queue">Queue View</option>
+
+              <option value="array">Sorted Array View</option>
+              <option value="list">Linked List View</option>
+            </select>
+
+            <button>Display Devices</button>
+          </form>
+
+          <div class="insight-box">
+            <h4>⚡ Performance Insight</h4>
+
+            🔍 BST → O(log n) search <br />
+            📊 Array → O(1) access <br />
+            📚 Stack → LIFO <br />
+            🔄 Queue → FIFO
+          </div>
+
+          <div class="info">Structured device visualization</div>
+        </div>
+      </div>
+
+      <!-- Technology -->
+
+      <section class="technology">
+        <h2>Technology Stack</h2>
+
+        <div class="tech-grid">
+          <div>⚙ C++ Backend</div>
+
+          <div>🌳 Binary Search Tree</div>
+
+          <div>📚 Stack</div>
+
+          <div>🔄 Queue</div>
+
+          <div>📊 Sorted Array</div>
+
+          <div>🌐 HTTP Server</div>
+        </div>
+      </section>
+
+      <footer>
+        Smart Home Management System
+        <br />
+        Data Structure Based Controller
+      </footer>
+    </div>
+    <script>
+      const modeSelect = document.getElementById("searchMode");
+      const methodSelect = document.getElementById("searchMethod");
+
+      modeSelect.addEventListener("change", () => {
+        if (modeSelect.value === "fast") {
+          methodSelect.value = "tree";
+          [...methodSelect.options].forEach((opt) => {
+            opt.disabled = opt.value === "stack" || opt.value === "queue";
+          });
+        } else {
+          [...methodSelect.options].forEach((opt) => (opt.disabled = false));
+        }
+      });
+    </script>
+  </body>
+</html>

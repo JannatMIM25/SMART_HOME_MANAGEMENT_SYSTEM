@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>System Activity Center</title>
+
+    <link rel="stylesheet" href="activity.css" />
+
+    <title>System Activity Center</title>
+
+   
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>⚡ System Activity Center</h1>
+
+        <p>Smart Home Controller Operation Monitoring Panel</p>
+      </div>
+
+      <div class="status">
+        <div class="card">
+          <h2>ONLINE</h2>
+
+          <p>System Status</p>
+        </div>
+
+        <div class="card">
+          <h2>activity.txt</h2>
+
+          <p>Activity Storage</p>
+        </div>
+
+        <div class="card">
+          <h2>4 METHODS</h2>
+
+          <p>BST • Stack • Queue • Array</p>
+        </div>
+      </div>
+
+      <h2 class="title">Recent Operations</h2>
+
+      <!-- C++ will insert activity cards here -->
+      <script>
+        fetch("/activity")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("activity").innerHTML = html;
+          })
+          .catch((err) => {
+            document.getElementById("activity").innerHTML =
+              "<p>Failed to load activity.</p>";
+          });
+      </script>
+
+      <div id="activity"></div>
+
+      <a class="back" href="/dashboard.html"> ← Back To Dashboard </a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+1101,Light,stack
+1102,Fan,stack
+2678,Light,list
+2569,Fan,tree
+5566,AC,list
+9876,AC,tree
+9877,AC,tree
+8907,Fan,stack
+8999,Fan,stack
+45321,AC,queue
+45327,AC,queue
+66,FAN,stack
+78,AC,queue
+68,FAN,stack

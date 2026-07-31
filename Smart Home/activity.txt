@@ -1,0 +1,32 @@
+ADD|Device ID: 45327 | Name: AC | Method: queue
+ADD|Device ID: 1 | Name: Light | Method: tree
+
+SEARCH|Device ID: 1 | Method: stack | Found: No
+DISPLAY|Method: tree
+DELETE|Device ID: 1 removed using tree
+DISPLAY|Method: queue
+DISPLAY|Method: queue
+DISPLAY|Method: stack
+DISPLAY|Method: stack
+DISPLAY|Method: queue
+DISPLAY|Method: stack
+DISPLAY|ID: 43<br>ID: 68<br>ID: 66<br>ID: 8999<br>ID: 8907<br>ID: 1102<br>ID: 1101<br>
+DISPLAY|ID: 2678 | Name: Light<br>ID: 5566 | Name: AC<br>
+DELETE|Device ID: 43 removed using stack
+ADD|Failed to add Device ID: 45327 | Reason: ID already exists
+SEARCH|Device ID: 2 | Method: tree | Found: No
+DELETE|Device ID: 2 not found using tree
+SEARCH|Device ID: 66 | Method: stack | Found: No
+SEARCH|Device ID: 68 | Method: stack | Found: Yes
+SEARCH|Device ID: 66 | Method: tree | Found: No
+SEARCH|Device ID: 66 | Method: tree | Found: No
+SEARCH|Device ID: 66 | Method: stack | Found: No
+SEARCH|Device ID: 68 | Method: stack | Found: Yes
+SEARCH|Device ID: 68 | Method: tree | Found: No
+SEARCH|Device ID: 66 | Method: stack | Found: No
+DISPLAYstack|ID: 68<br>ID: 66<br>ID: 8999<br>ID: 8907<br>ID: 1102<br>ID: 1101<br>
+SEARCH|Device ID: 68 | Method: stack | Found: Yes
+SEARCH|Device ID: 66 | Mode: search | Method: Stack | Found at pos 2
+DISPLAYstack|ID: 68<br>ID: 66<br>ID: 8999<br>ID: 8907<br>ID: 1102<br>ID: 1101<br>
+DISPLAYarray|ID: 66 | Name: FAN<br>ID: 68 | Name: FAN<br>ID: 78 | Name: AC<br>ID: 1101 | Name: Light<br>ID: 1102 | Name: Fan<br>ID: 2569 | Name: Fan<br>ID: 2678 | Name: Light<br>ID: 5566 | Name: AC<br>ID: 8907 | Name: Fan<br>ID: 8999 | Name: Fan<br>ID: 9876 | Name: AC<br>ID: 9877 | Name: AC<br>ID: 45321 | Name: AC<br>ID: 45327 | Name: AC<br>
+DISPLAY (tree)|ID: 2569 | Name: Fan<br>ID: 9876 | Name: AC<br>ID: 9877 | Name: AC<br>
