@@ -157,7 +157,9 @@ public:
 
         if (front == NULL)
         {
-            front = rear = newNode;
+            front = newNode;
+            rear = newNode;
+            return;
         }
 
         else
@@ -176,16 +178,27 @@ public:
         if (head == NULL)
         {
             head = newNode;
+            return;
+        }
+        else if (id < head->id)
+        {
+            newNode->next = head;
+            head = newNode;
+            return;
         }
 
         else
         {
             ListNode *temp = head;
 
-            while (temp->next != NULL)
+            while (temp->next != NULL && temp->next->id < id)
+            {
                 temp = temp->next;
+            }
+            newNode->next = temp->next;
 
             temp->next = newNode;
+            return;
         }
     }
 
@@ -855,13 +868,12 @@ int main()
                  }
              });
 
-    
     /// Find Device
     svr.Get("/find",
             [&](const Request &req, Response &res)
             {
                 int id = stoi(req.get_param_value("id"));
-                string mode = req.get_param_value("mode"); //Normal or  fast
+                string mode = req.get_param_value("mode"); // Normal or  fast
                 string method = req.get_param_value("method");
 
                 int pos = -1, qpos = -1, apos = -1;
@@ -892,22 +904,27 @@ int main()
                 }
                 else // mode == "Normal"  use the selected method only
                 {
+                    if (method == "list")
+                    {
+                        found = (Search_From_Linkedlist(home.head, id) != NULL);
+                        details += " | Method: list | " + string(found ? "Found" : "Result: Not Found");
+                    }
                     if (method == "tree")
                     {
                         found = (Search_From_BST(home.root, id) != NULL);
-                        details += " | Method: Tree | " + string(found ? "Found" : "Not Found");
+                        details += " | Method: Tree | " + string(found ? "Found" : "Result: Not Found");
                     }
                     else if (method == "stack")
                     {
                         Search_From_Stack(home.top, id, pos);
                         found = (pos != -1);
-                        details += " | Method: Stack | " + string(found ? "Found at position: " + to_string(pos) : "Not Found");
+                        details += " | Method: Stack | " + string(found ? "Found at position: " + to_string(pos) : "Result: Not Found");
                     }
                     else if (method == "queue")
                     {
                         Search_from_Queue(home.front, id, qpos);
                         found = (qpos != -1);
-                        details += " | Method: Queue | " + string(found ? "Found at position: " + to_string(qpos) : "Not Found");
+                        details += " | Method: Queue | " + string(found ? "Found at position: " + to_string(qpos) : "Result: Not Found");
                     }
                     else if (method == "array")
                     {
@@ -933,18 +950,15 @@ int main()
                             }
                         }
                         found = (apos != -1);
-                        details += " | Method: Array | " + string(found ? "Found at pos " + to_string(apos) : "Not Found");
+                        details += " | Method: Array | " + string(found ? "Found at pos " + to_string(apos) : "Result: Not Found");
                     }
                 }
-
-                if (!found)
-                    details += " | Result: Not Found";
 
                 home.saveActivity("SEARCH", details);
                 res.set_redirect("/activity.html");
             });
 
-            ///For Display
+    /// For Display
     svr.Get("/display",
             [&](const Request &req, Response &res)
             {
