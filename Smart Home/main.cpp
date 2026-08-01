@@ -7,7 +7,7 @@
 
 using namespace std;
 using namespace httplib;
-int Stacksize = 0;
+
 
 // -------- Device Node --------
 class Device
@@ -32,11 +32,12 @@ class StackNode
 public:
     int id;
     StackNode *next;
-
-    StackNode(int i)
+string name;
+    StackNode(int i,string n)
     {
         id = i;
         next = NULL;
+        name=n;
     }
 };
 
@@ -46,11 +47,13 @@ class QueueNode
 public:
     int id;
     QueueNode *next;
+    string name;
 
-    QueueNode(int i)
+    QueueNode(int i,string n)
     {
         id = i;
         next = NULL;
+        name=n;
     }
 };
 
@@ -135,9 +138,9 @@ public:
 
     // -------- Stack --------
 
-    void push(int id)
+    void push(int id,string name)
     {
-        StackNode *newNode = new StackNode(id);
+        StackNode *newNode = new StackNode(id,name);
         if (top == NULL)
         {
             top = newNode;
@@ -151,9 +154,9 @@ public:
 
     // -------- Queue --------
 
-    void enqueue(int id)
+    void enqueue(int id,string name)
     {
-        QueueNode *newNode = new QueueNode(id);
+        QueueNode *newNode = new QueueNode(id,name);
 
         if (front == NULL)
         {
@@ -303,9 +306,9 @@ public:
             if (type == "tree")
                 root = insert(root, id, name);
             else if (type == "stack")
-                push(id);
+                push(id,name);
             else if (type == "queue")
-                enqueue(id);
+                enqueue(id,name);
             else if (type == "list")
                 addToLinkedList(id, name);
 
@@ -336,12 +339,12 @@ public:
 
         else if (type == "stack")
         {
-            push(id);
+            push(id,name);
         }
 
         else if (type == "queue")
         {
-            enqueue(id);
+            enqueue(id,name);
         }
 
         else if (type == "list")
@@ -646,7 +649,7 @@ string Display_Stack(StackNode *top)
 
     while (temp != NULL)
     {
-        result += "ID: " + to_string(temp->id) + "\n";
+        result += "ID: " + to_string(temp->id) + " | Name: " + temp->name + "\n";
         temp = temp->next;
     }
 
@@ -660,7 +663,8 @@ string Display_Queue(QueueNode *front)
 
     while (temp != NULL)
     {
-        result += "ID: " + to_string(temp->id) + "\n";
+        result += "ID: " + to_string(temp->id) + " | Name: " + temp->name + "\n";
+        
         temp = temp->next;
     }
 
@@ -773,6 +777,7 @@ int main()
 
                  if (type == "tree")
                  {
+                    
                      // check first
                      if (home.search(home.root, id))
                      {
@@ -785,14 +790,17 @@ int main()
 
                  else if (type == "list")
                  {
+                    
                      deleted_id = id;
                      deleted = Delete_From_Linkedlist(home.head, id);
+                    
                  }
 
                  else if (type == "array")
                  {
                      deleted_id = id;
                      deleted = Delete_From_sorted_array(home.arr, home.size, id);
+                    
                  }
 
                  if (deleted)
@@ -831,7 +839,7 @@ int main()
 
                  if (type == "stack")
                  {
-                     if (home.top != NULL)
+                    if (home.top != NULL)
                      {
                          removed_id = home.top->id;
                          removed = Delete_From_Stack(home.top);
@@ -840,6 +848,7 @@ int main()
 
                  else if (type == "queue")
                  {
+                     
                      if (home.front != NULL)
                      {
                          removed_id = home.front->id;
