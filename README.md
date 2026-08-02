@@ -11,7 +11,7 @@ Data structures and techniques used in this project:
 - Linked List
 - Sorted Array
 
-A simple frontend is also included using HTML and CSS to interact with the system.
+A simple frontend is also included using HTML,CSS and Javascript to interact with the system.
 
 ## How to Run
 
